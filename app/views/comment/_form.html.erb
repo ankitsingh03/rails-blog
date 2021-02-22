@@ -1,0 +1,42 @@
+<div class="coller-home">
+  <h3> Create Comment </h3>
+  <hr>
+
+  <% if user_signed_in? %>
+
+    <%= form_with url: "/comment", method: :post   do |form| %>
+    <%#= form_for(@comment, url: "/comment", html: {method: "post"})  do |form| %>
+    <%#= form_with model: @comment %>
+      <div class="form-floating">
+        <%= form.text_field :commenter, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea" %>
+        <%= form.label "Your Title", for:"floatingTextarea" %><br>
+
+        <% @comment.errors.full_messages_for(:commenter).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="form-floating">
+        <%= form.text_area :body, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea2", style:"height: 100px" %>
+        <%= form.label "Your Comment", for:"floatingTextarea2" %><br>
+      </div>
+
+      <div>
+        <%= form.number_field :user_id, value: current_user.id , type: :hidden %>
+        <%= form.number_field :post_id, value: @post.id , type: :hidden %>
+      </div>
+
+      <div>
+        <%= form.submit class:"btn btn-success" %>
+      </div>
+
+    <% end %>
+
+  <% else %>
+
+    <h4> Please Login To Drop Comment </h4>
+    <%= link_to "Login", new_user_session_path , class:"btn btn-light" %>
+
+  <% end %>
+
+</div>

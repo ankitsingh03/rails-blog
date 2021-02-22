@@ -1,0 +1,24 @@
+<div class="coller-home card">
+    <h5 class="card-header"><%= @post.title%></h5>
+    <div class="card-body">
+      <p class="card-text"><%= @post.body %></p>
+      <% if user_signed_in? and current_user.id == @post.user.id %>
+        <%= link_to "Edit", edit_blog_path(@post), class:"btn btn-primary" %>
+        <%= link_to "Delete", blog_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
+      <% end %>
+    </div>
+</div><br>
+
+<%
+=begin %>
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<% if user_signed_in? and current_user.id == @post.user.id %>
+  <%= link_to "edit", edit_blog_path(@post) %>
+  <%= link_to "Destroy", blog_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+<%
+=end %>
+<%= render "comment/form" %>
+<br>
+<%= render "comment/comment" %>

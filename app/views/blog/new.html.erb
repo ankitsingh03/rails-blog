@@ -1,0 +1,37 @@
+<div class="coller-home">
+
+<h3>New Blog</h3>
+
+
+<%#= form_with url: "/blog", method: :post do |form| %>
+<%= form_for(@post, url: "/blog", html: {method: "post"})  do |form| %>
+  <div class="form-floating">
+    <%= form.text_field :title, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea" %>
+    <%= form.label :title, for:"floatingTextarea" %><br>
+    
+    <% @post.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    
+  </div>
+
+  <div class="form-floating">
+    
+    <%= form.text_area :body, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea2", style:"height: 200px" %>
+    <%= form.label "Your content", for:"floatingTextarea2" %><br>
+
+    <% @post.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.number_field :user_id, value: current_user.id , type: :hidden %>
+  </div>
+
+  <div>
+    <%= form.submit class:"btn btn-success" %>
+  </div>
+
+<% end %>
+</div>

@@ -1,0 +1,29 @@
+<div class="coller-home">
+
+<center> <%= link_to image_tag("blogs.jpg") %> </center>
+
+<%
+=begin%>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+        <%= link_to post.title, blog_path(post) %>
+        <br>
+        <%= post.body %>
+    </li>
+  <% end %>
+</ul>
+<%
+=end %>
+<h3> <center> See All The Blog </center> </h3>
+<% @posts.each do |post| %>
+  <div class="card">
+    <h5 class="card-header"><%= post.title%></h5>
+    <div class="card-body">
+      <p class="card-text"><%= post.body %></p>
+      <%= link_to "explore", blog_path(post), class:"btn btn-primary"  %>
+    </div>
+  </div><br>
+<% end %>
+
+</div>

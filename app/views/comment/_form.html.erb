@@ -19,6 +19,10 @@
       <div class="form-floating">
         <%= form.text_area :body, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea2", style:"height: 100px" %>
         <%= form.label "Your Comment", for:"floatingTextarea2" %><br>
+
+        <% @comment.errors.full_messages_for(:body).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
       </div>
 
       <div>
@@ -29,6 +33,20 @@
       <div>
         <%= form.submit class:"btn btn-success" %>
       </div>
+
+      <%# error messages %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h5>
+
+          <ul>
+            <% @comment.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
 
     <% end %>
 

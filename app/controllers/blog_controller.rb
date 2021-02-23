@@ -8,13 +8,11 @@ class BlogController < ApplicationController
 
   def index
     @posts = Post.where(user_id:current_user.id).reverse_order
-    @comment = Comment.new
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = post_data
     @comment = Comment.new
-
   end
 
   def new
@@ -22,7 +20,7 @@ class BlogController < ApplicationController
   end
 
   def create
-    # @blog = Post.new(title: params[:title], body: params[:body], user_id: params[:user_id])
+    # @post = Post.new(title: params[:title], body: params[:body], user_id: params[:user_id])
     @post = Post.new(post_params)
 
     if @post.save
@@ -43,7 +41,6 @@ class BlogController < ApplicationController
 
   def update
     @post = post_data
-
     if @post.update(post_params)
       redirect_to blog_path(@post)
     else

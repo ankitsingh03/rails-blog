@@ -11,7 +11,6 @@ class BlogController < ApplicationController
   end
 
   def show
-    @post = post_data
     @comment = Comment.new
   end
 
@@ -31,16 +30,14 @@ class BlogController < ApplicationController
   end
 
   def edit
-    data = post_data
-    if current_user.id == data.user_id
-      @post = data
+    if current_user.id == @post.user_id
+      @post
     else
-      redirect_to blog_path(data)
+      redirect_to blog_path(@post)
     end
   end
 
   def update
-    @post = post_data
     if @post.update(post_params)
       redirect_to blog_path(@post)
     else
@@ -49,7 +46,6 @@ class BlogController < ApplicationController
   end
 
   def destroy
-    @post = post_data
     @post.destroy
     redirect_to root_path
   end
@@ -60,6 +56,6 @@ class BlogController < ApplicationController
     end
 
     def post_data
-      Post.find(params[:id])
+      @post = Post.find(params[:id])
     end
 end

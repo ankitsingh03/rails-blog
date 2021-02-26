@@ -2,17 +2,16 @@
 
 <h3>New Blog</h3>
 
-
 <%#= form_with url: "/blog", method: :post do |form| %>
 <%= form_for(@post, url: "/blog", html: {method: "post"})  do |form| %>
   
   <div class="form-floating">
-    <%= form.text_field :title, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea" %>
+    <%= form.text_field :title, class:"form-control", id:"floatingTextarea" %>
     <%= form.label :title, for:"floatingTextarea" %><br>
   </div>
 
   <div class="form-floating">
-    <%= form.text_area :body, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea2", style:"height: 200px" %>
+    <%= form.text_area :body, class:"form-control", id:"floatingTextarea2", style:"height: 200px" %>
     <%= form.label "Your content", for:"floatingTextarea2" %><br>
   </div>
 
@@ -24,11 +23,12 @@
     <%= form.submit class:"btn btn-success" %>
   </div>
   <br>
-  <%# error messages %>
+
+
+  <!-- Rails validation error messages -->
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h5><%= pluralize(@post.errors.count, "error") %> prohibited this Post from being saved:</h5>
-
       <ul>
         <% @post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -39,3 +39,32 @@
 
 <% end %>
 </div>
+
+<!--this is put for validation in form -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<script>  
+  $("#new_post").validate({
+  rules: {
+    "post[title]": {
+      required: true,
+      minlength: 2
+    },
+    "post[body]": {
+      required: true,
+      minlength: 5
+    }
+  },
+  messages: {
+    "post[title]": {
+      required: "You need to put your title here !",
+    },
+    "post[body]": {
+      required: "You need to put your content here !",
+    }
+  }
+  });
+ 
+</script>

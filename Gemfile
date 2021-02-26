@@ -11,6 +11,9 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'jquery-rails', '~> 4.4'
+gem 'jquery-validation-rails', '~> 1.13', '>= 1.13.1'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

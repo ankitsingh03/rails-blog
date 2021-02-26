@@ -6,7 +6,7 @@
 
   <div class="field form-floating mb-3">
     
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com", type:"email", required: true %>
     <%= f.label :email, for:"floatingInput" %><br />
   </div>
 
@@ -16,7 +16,7 @@
 
   <div class="field form-floating mb-3">
     
-    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password", minlength:"6", type:"password", required: true %>
     <%= f.label :password, for:"floatingPassword" %> <i>(leave blank if you don't want to change it)</i><br />
     <% if @minimum_password_length %>
       <br />
@@ -26,7 +26,7 @@
 
   <div class="field form-floating mb-3">
     
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password", minlength:"6", type:"password", required: true %>
     <%= f.label :password_confirmation, for:"floatingPassword" %><br />
   </div>
 

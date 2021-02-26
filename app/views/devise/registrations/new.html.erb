@@ -5,7 +5,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field form-floating mb-3">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com", type:"email", required: true %>
     <%= f.label :email, for:"floatingInput" %>
   </div>
 
@@ -14,13 +14,13 @@
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <div class="field form-floating mb-3">
-    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password", minlength:"6", type:"password", required: true %>
     <%= f.label :password, for:"floatingPassword" %>
     </div>
   </div>
 
   <div class="field form-floating mb-3">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password", minlength:"6", type:"password", required: true %>
     <%= f.label :password_confirmation, for:"floatingPassword" %><br />
   </div>
 

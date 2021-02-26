@@ -8,6 +8,18 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+//= require jquery
+//= require jquery_ujs
+
+// put the code for validation but not working. But the link of javascript in `new.html.erb` work for jquery validation.
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+console.log("application")
+
+//= require new_validate

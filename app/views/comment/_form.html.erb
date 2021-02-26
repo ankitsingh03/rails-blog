@@ -8,7 +8,7 @@
     <%#= form_for(@comment, url: "/comment", html: {method: "post"})  do |form| %>
     <%#= form_with model: @comment %>
       <div class="form-floating">
-        <%= form.text_field :commenter, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea" %>
+        <%= form.text_field :commenter, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea", minlength:"2", required: true %>
         <%= form.label "Your Title", for:"floatingTextarea" %><br>
 
         <% @comment.errors.full_messages_for(:commenter).each do |message| %>
@@ -17,7 +17,7 @@
       </div>
 
       <div class="form-floating">
-        <%= form.text_area :body, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea2", style:"height: 100px" %>
+        <%= form.text_area :body, class:"form-control", placeholder:"Leave a comment here", id:"floatingTextarea2", style:"height: 100px", minlength:"10", required: true %>
         <%= form.label "Your Comment", for:"floatingTextarea2" %><br>
 
         <% @comment.errors.full_messages_for(:body).each do |message| %>
@@ -33,20 +33,6 @@
       <div>
         <%= form.submit class:"btn btn-success" %>
       </div>
-
-      <%# error messages %>
-      <% if @comment.errors.any? %>
-        <div id="error_explanation">
-          <h5><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h5>
-
-          <ul>
-            <% @comment.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
 
     <% end %>
 
